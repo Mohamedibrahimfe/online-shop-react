@@ -20,3 +20,4 @@ const useFetch = (endPoint) => {
   return { data, loading, error };
 };
 export default useFetch;
+//     const { data, loading, error } = useFetch(`products`);
