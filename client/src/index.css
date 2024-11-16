@@ -30,3 +30,18 @@ nav ul li a{
   color: #f33f3f;
   border-bottom: 2px solid #010000;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.navbar{
+  padding-inline:20%;
+}

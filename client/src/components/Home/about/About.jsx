@@ -1,7 +1,7 @@
 import "./about.css";
 export default function About() {
   return (
-    <div className="best-features">
+    <div id="about" className="best-features">
       <div className="container">
         <div className="row">
           <div className="col-md-12">

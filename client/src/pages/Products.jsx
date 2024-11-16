@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 
 import Categories from "../components/Categories";
 import { StoreContext } from "../hooks/StoreContext";
+import Loader from "../components/Loader/Loader";
 export default function Products() {
   const { filters } = useContext(StoreContext);
   console.log(filters);
@@ -17,7 +18,7 @@ export default function Products() {
     <section className=" py-5" style={{ backgroundColor: "#eee" }}>
       <div className="container py-5">
         <div className="row">
-          {loading && <p>Loading...</p>}
+          {loading && <Loader />}
           {products.map((product) => (
             <div
               key={product.id}

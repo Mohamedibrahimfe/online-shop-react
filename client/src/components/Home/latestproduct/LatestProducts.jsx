@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
+import Loader from "../../Loader/Loader";
 export default function LatestProducts() {
   const { data, loading, error } = useFetch(`products?populate=*`);
   const [products, setProducts] = useState([]);
@@ -25,7 +26,7 @@ export default function LatestProducts() {
             </Link>
           </div>
         </div>
-        {loading && <p>Loading...</p>}
+        {loading && <Loader />}
         {products.map((product) => (
           <Link
             key={product.id}

@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 // import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { useContext } from "react";
+import { StoreContext } from "../hooks/StoreContext";
 export default function NavBar() {
+  const { cart } = useContext(StoreContext);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary px-3">
+    <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary ">
       <button
         data-mdb-collapse-init
         className="navbar-toggler"
@@ -25,15 +27,20 @@ export default function NavBar() {
           </h1>
         </a>
         <ul className="navbar-nav me-auto mb-2 mb-lg-0 transition duration-500">
-          <li className="nav-item">
-            <NavLink className="nav-link font-bold  " to="/">
-              Home
-            </NavLink>
+          <li className="nav-item ">
+            <h3>
+              <NavLink className="nav-link font-bold  " to="/">
+                Home
+              </NavLink>
+            </h3>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link font-bold " to="/products">
-              Our Products
-            </NavLink>
+          <li className="nav-item ">
+            <h3>
+              {" "}
+              <NavLink className="nav-link font-bold " to="/products">
+                Our Products
+              </NavLink>
+            </h3>
           </li>
         </ul>
       </div>
@@ -54,7 +61,7 @@ export default function NavBar() {
           >
             <i className="fas fa-bell"></i>
             <span className="badge rounded-pill badge-notification bg-danger">
-              1
+              {cart.length}
             </span>
           </a>
         </div>
