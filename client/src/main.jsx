@@ -7,12 +7,19 @@ import NoPage from "./pages/NoPage";
 import Cart from "./pages/Cart";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
-import StoreContext from "./hooks/StoreContext";
+import { useState, useEffect } from "react";
+import { StoreContext } from "./hooks/StoreContext";
+
 export default function App() {
   const [filters, setFilters] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  console.log("filters", filters);
+  console.log("categories", selectedCategory);
+
   return (
-    <StoreContext.Provider value={{ filters, setFilters }}>
+    <StoreContext.Provider
+      value={{ filters, setFilters, selectedCategory, setSelectedCategory }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

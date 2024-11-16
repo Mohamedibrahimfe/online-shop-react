@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useFetch from "../hooks/useFetch";
 
-// import Categories from "../components/Categories";
+import Categories from "../components/Categories";
+import { StoreContext } from "../hooks/StoreContext";
 export default function Products() {
-  // const { data, loading, error } = useFetch(`products?populate=*`);
+  const { filters } = useContext(StoreContext);
+  console.log(filters);
 
-  // useEffect(() => {
-  //   data && setProducts(data);
-  // }, [data]);
-  // const [products, setProducts] = useState([]);
+  const { data, loading, error } = useFetch(filters);
+  useEffect(() => {
+    data && setProducts(data);
+    console.log(data);
+  }, [data]);
+  const [products, setProducts] = useState([]);
   return (
-    <section style={{ backgroundColor: "#eee" }}>
+    <section className=" py-5" style={{ backgroundColor: "#eee" }}>
       <div className="container py-5">
         <div className="row">
           {loading && <p>Loading...</p>}
@@ -21,7 +25,7 @@ export default function Products() {
             >
               <div className="card">
                 <div className="d-flex justify-content-between p-3">
-                  <p className="lead mb-0">Todays Combo Offer</p>
+                  <p className="lead mb-0">Todays Offer</p>
                   <div
                     className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                     style={{
@@ -41,11 +45,11 @@ export default function Products() {
                   <div className="d-flex justify-content-between">
                     <p className="small">
                       <a href="#!" className="text-muted">
-                        Laptops
+                        {product.categories[0].title}
                       </a>
                     </p>
                     <p className="small text-danger">
-                      <s>$1099</s>
+                      <s>${product.price + 10}</s>
                     </p>
                   </div>
 
@@ -71,6 +75,7 @@ export default function Products() {
             </div>
           ))}
         </div>
+        <Categories />
       </div>
     </section>
   );

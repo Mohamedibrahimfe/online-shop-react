@@ -1,6 +1,7 @@
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import CheckBox from "./CheckBox";
+
 export default function Categories() {
   const { data, loading } = useFetch(`Categories?populate=*`);
 
@@ -8,7 +9,10 @@ export default function Categories() {
   useEffect(() => {
     data && setCategories(data);
   }, [data]);
-  console.log(categories);
 
-  return <CheckBox category={categories} />;
+  return (
+    <div className="container">
+      <CheckBox category={categories} />
+    </div>
+  );
 }
