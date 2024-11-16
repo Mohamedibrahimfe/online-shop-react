@@ -1,18 +1,19 @@
-import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
-export default function Products() {
-  const { data, loading, error } = useFetch(`products?populate=*`);
+import useFetch from "../hooks/useFetch";
 
-  useEffect(() => {
-    data && setProducts(data);
-  }, [data]);
-  const [products, setProducts] = useState([]);
+// import Categories from "../components/Categories";
+export default function Products() {
+  // const { data, loading, error } = useFetch(`products?populate=*`);
+
+  // useEffect(() => {
+  //   data && setProducts(data);
+  // }, [data]);
+  // const [products, setProducts] = useState([]);
   return (
     <section style={{ backgroundColor: "#eee" }}>
       <div className="container py-5">
         <div className="row">
           {loading && <p>Loading...</p>}
-
           {products.map((product) => (
             <div
               key={product.id}

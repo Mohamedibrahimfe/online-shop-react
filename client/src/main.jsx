@@ -7,18 +7,23 @@ import NoPage from "./pages/NoPage";
 import Cart from "./pages/Cart";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import StoreContext from "./hooks/StoreContext";
 export default function App() {
+  const [filters, setFilters] = useState({});
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <StoreContext.Provider value={{ filters, setFilters }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="products" element={<Products />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </StoreContext.Provider>
   );
 }
 
