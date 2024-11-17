@@ -9,6 +9,10 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { StoreContext } from "./hooks/StoreContext";
+import { persistor, store } from "./store/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import Loader from "./components/Loader/Loader";
 
 export default function App() {
   const [filters, setFilters] = useState({});
@@ -25,16 +29,20 @@ export default function App() {
         setCart,
       }}
     >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="products" element={<Products />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="*" element={<NoPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PersistGate loading={<Loader />} persistor={persistor}>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="products" element={<Products />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="*" element={<NoPage />} />
+              </Route>
+            </Routes>
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
     </StoreContext.Provider>
   );
 }

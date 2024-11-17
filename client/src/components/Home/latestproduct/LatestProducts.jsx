@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import Loader from "../../Loader/Loader";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../store/CartReducer";
 export default function LatestProducts() {
+  const dispatch = useDispatch();
   const { data, loading, error } = useFetch(`products?populate=*`);
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -28,7 +31,7 @@ export default function LatestProducts() {
         </div>
         {loading && <Loader />}
         {products.map((product) => (
-          <Link
+          <div
             key={product.id}
             className="product col-md-4 border-1 shadow-lg  my-2 realative"
             to={`/products/${product.id}`}
@@ -69,6 +72,7 @@ export default function LatestProducts() {
                     <i className="fa fa-star"></i>
                   </li>
                 </ul>
+
                 <div className="reviews mb-4 px-1">
                   Available:{" "}
                   {product.categories.map((cat) => (
@@ -80,9 +84,27 @@ export default function LatestProducts() {
                     </span>
                   ))}
                 </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    dispatch(
+                      addToCart({
+                        id: product.id,
+                        title: product.title,
+                        price: product.price,
+                        image: product.image[0].url,
+                        description: product.Desc,
+                        quantity: 1,
+                      })
+                    )
+                  }
+                  className="mb-2 btn btn-primary btn-md cursor-pointer rounded"
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

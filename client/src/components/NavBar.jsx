@@ -1,13 +1,11 @@
-import { NavLink } from "react-router-dom";
-// import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useContext } from "react";
-import { StoreContext } from "../hooks/StoreContext";
+import { NavLink } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import CartBadge from "./Home/cart/CartBadge";
 export default function NavBar() {
-  const { cart } = useContext(StoreContext);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary ">
+    <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top ">
       <button
         data-mdb-collapse-init
         className="navbar-toggler"
@@ -42,30 +40,17 @@ export default function NavBar() {
               </NavLink>
             </h3>
           </li>
+          <li className="nav-item ">
+            <h3>
+              {" "}
+              <NavLink className="nav-link font-bold " to="/cart">
+                Soppign Cart
+              </NavLink>
+            </h3>
+          </li>
         </ul>
       </div>
-
-      <div className="d-flex align-items-center">
-        <a className="link-secondary me-3" href="/">
-          <i className="fas fa-shopping-cart"></i>
-        </a>
-
-        <div className="dropdown">
-          <a
-            data-mdb-dropdown-init
-            className="link-secondary me-3 dropdown-toggle hidden-arrow"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            aria-expanded="false"
-          >
-            <i className="fas fa-bell"></i>
-            <span className="badge rounded-pill badge-notification bg-danger">
-              {cart.length}
-            </span>
-          </a>
-        </div>
-      </div>
+      <CartBadge />
     </nav>
   );
 }

@@ -1,40 +1,40 @@
 import { useState, useEffect, useContext } from "react";
 import useFetch from "../hooks/useFetch";
-
 import Categories from "../components/Categories";
 import { StoreContext } from "../hooks/StoreContext";
 import Loader from "../components/Loader/Loader";
-export default function Products() {
-  const { filters } = useContext(StoreContext);
-  console.log(filters);
+import { addToCart } from "../store/CartReducer";
+import { useDispatch } from "react-redux";
 
+export default function Products() {
+  const dispatch = useDispatch();
+  const { filters } = useContext(StoreContext);
   const { data, loading, error } = useFetch(filters);
   useEffect(() => {
     data && setProducts(data);
-    console.log(data);
   }, [data]);
   const [products, setProducts] = useState([]);
+
   return (
-    <section className=" py-5" style={{ backgroundColor: "#eee" }}>
+    <section
+      className="products-section py-5"
+      style={{ backgroundColor: "#eee" }}
+    >
       <div className="container py-5">
-        <div className="row">
+        <div className="product-container row  m-0">
           {loading && <Loader />}
           {products.map((product) => (
             <div
               key={product.id}
-              className="col-md-12 col-lg-4 mb-4 mb-lg-0 mb-lg-4"
+              className="head-content col-md-12 col-lg-4 mb-4 mb-lg-0 mb-lg-4 "
             >
               <div className="card">
-                <div className="d-flex justify-content-between p-3">
+                <div className="card-head d-flex justify-content-between p-3">
                   <p className="lead mb-0">Todays Offer</p>
-                  <div
-                    className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                    style={{
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  >
-                    <p className="text-white mb-0 small">x4</p>
+                  <div className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong">
+                    <span
+                      className={product.isFeatured ? "featured" : ""}
+                    ></span>
                   </div>
                 </div>
                 <img
@@ -60,16 +60,24 @@ export default function Products() {
                   </div>
 
                   <div className="d-flex justify-content-between mb-2">
-                    <p className="text-muted mb-0">
-                      Available: <span className="fw-bold">6</span>
-                    </p>
-                    <div className="ms-auto text-warning">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch(
+                          addToCart({
+                            id: product.id,
+                            title: product.title,
+                            price: product.price,
+                            image: product.image[0].url,
+                            description: product.Desc,
+                            quantity: 1,
+                          })
+                        )
+                      }
+                      className="btn btn-primary btn-md cursor-pointer rounded"
+                    >
+                      Add to cart
+                    </button>
                   </div>
                 </div>
               </div>
