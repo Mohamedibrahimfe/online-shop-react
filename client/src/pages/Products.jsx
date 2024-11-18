@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import useFetch from "../hooks/useFetch";
 import Categories from "../components/Categories";
 import { StoreContext } from "../hooks/StoreContext";
-import Loader from "../components/Loader/Loader";
+import Loader from "../components/loadercomp/Loader";
 import { addToCart } from "../store/CartReducer";
 import { useDispatch } from "react-redux";
 

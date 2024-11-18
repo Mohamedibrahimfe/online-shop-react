@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import Loader from "../../Loader/Loader";
+import Loader from "../../loadercomp/Loader";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../store/CartReducer";
 export default function LatestProducts() {
