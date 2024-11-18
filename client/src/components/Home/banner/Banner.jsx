@@ -22,6 +22,9 @@ const pagesData = [
 export default function Banner() {
   const [page, setPage] = useState(1);
 
+  setInterval(() => {
+    page < 3 ? setPage(page + 1) : setPage(1);
+  }, 5000);
   return (
     <div className="banner ">
       <h1 className="title">{pagesData[page - 1].title}</h1>

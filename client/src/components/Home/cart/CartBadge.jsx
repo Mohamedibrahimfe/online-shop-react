@@ -24,8 +24,8 @@ export default function CartBadge() {
         </span>
       </i>
 
-      <div className="cart-dropdown">
-        <div className="cart-items">
+      <div className="cart-dropdown ">
+        <div className="cart-items ">
           {showCart
             ? products.map((product) => (
                 <div key={product.id} className="cart-item">
@@ -56,10 +56,10 @@ export default function CartBadge() {
             : ""}
           <div className="clear-cart w-100 h3   ">
             {showCart && products.length > 0 ? (
-              <div className="d-flex">
+              <div className="d-flex buttons-container">
                 <button
                   onClick={() => dispatch(clearCart())}
-                  className="btn btn-danger w-100 rounded-0 text-lg fs-5"
+                  className="btn btn-danger clear-cart w-100 rounded-0 text-lg fs-5"
                 >
                   Reset Cart
                   <i className="mx-2 bi bi-trash "></i>

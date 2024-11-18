@@ -26,7 +26,7 @@ export default function Products() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="head-content col-md-12 col-lg-4 mb-4 mb-lg-0 mb-lg-4 "
+              className="head-content col-md-12 col-lg-4 mb-4 mb-lg-0 mb-lg-4 h-fit-content"
             >
               <div className="card">
                 <div className="card-head d-flex justify-content-between p-3">
@@ -39,15 +39,17 @@ export default function Products() {
                 </div>
                 <img
                   src={import.meta.env.VITE_APP_URL + product.image[0].url}
-                  className="card-img-top w-100"
-                  alt="Laptop"
+                  alt={product.title}
+                  width={"100%"}
+                  height={"400px"}
+                  style={{ objectFit: "cover" }}
                 />
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <p className="small">
-                      <a href="#!" className="text-muted">
+                      <span className="text-muted h6 me-2">
                         {product.categories[0].title}
-                      </a>
+                      </span>
                     </p>
                     <p className="small text-danger">
                       <s>${product.price + 10}</s>
