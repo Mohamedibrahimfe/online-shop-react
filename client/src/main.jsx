@@ -12,7 +12,7 @@ import { StoreContext } from "./hooks/StoreContext";
 import { persistor, store } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/loadercomp/Loader";
 
 export default function App() {
   const [filters, setFilters] = useState({});
