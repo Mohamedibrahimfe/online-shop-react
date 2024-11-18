@@ -9,7 +9,7 @@ export default function CheckBox({ category }) {
   useEffect(() => {
     if (!selectedCategory || selectedCategory.length === 0) {
       // Fetch all products if no category is selected
-      setFilters("http://localhost:1337/api/products?populate=*");
+      setFilters(`${import.meta.env.VITE_API_URL}/api/products?populate=*`);
       return;
     }
 
@@ -31,7 +31,9 @@ export default function CheckBox({ category }) {
     );
 
     // Set the final query URL
-    setFilters(`http://localhost:1337/api/products?populate=*&${query}`);
+    setFilters(
+      `${import.meta.env.VITE_API_URL}/api/products?populate=*&${query}`
+    );
   }, [selectedCategory]);
 
   const handleFilterCategory = (e) => {
