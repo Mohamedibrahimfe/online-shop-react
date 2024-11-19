@@ -20,7 +20,9 @@ export default function LatestProducts() {
         <div className="col-md-12">
           <div className="head">
             {" "}
-            <h1 className="title">Latest Products</h1>{" "}
+            <h1 className="title">
+              Latest <em>Products</em>
+            </h1>{" "}
             <Link
               to="/products"
               className="btn  cursor-pointer font-bold btn-outline-danger"
